@@ -1,18 +1,14 @@
 require 'roda'
 
-# Load microservice stack
-Dir.glob(File.join('./resources', '**', '*.rb'), &method(:require))
-Dir.glob(File.join('./routes', '**', '*.rb'), &method(:require))
-Dir.glob(File.join('./handlers', '**', '*.rb'), &method(:require))
-
 class MuService < Roda
   route do |r|
     r.on "api" do
       r.on "v1" do
+        # Protobuf gRPC over JSON demo
         # healthcheck for your convenience
         r.get "healthcheck" do
           response['Content-Type'] = 'application/json'
-          resource = Resources::V1::Healthcheck
+          resource = ::Resources::V1::Healthcheck
           msg = resource.new(status: 'ok')
           resource.encode_json(msg)
         end
@@ -20,7 +16,7 @@ class MuService < Roda
         # example timestamp service
         r.get "clock" do
           response['Content-Type'] = 'application/json'
-          resource = Resources::V1::Clock
+          resource = ::Resources::V1::Clock
           msg = resource.new(timestamp: Time.now.to_i)
           resource.encode_json(msg)
         end
@@ -38,7 +34,7 @@ class MuService < Roda
           end
         end
 
-        # example CRUD rest api endpoint
+        # example CRUD REST API endpoint
         r.is "users" do
           # read
           r.get do
