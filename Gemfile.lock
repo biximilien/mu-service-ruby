@@ -1,0 +1,50 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    diff-lcs (1.4.4)
+    google-protobuf (3.15.6-x86_64-linux)
+    googleapis-common-protos-types (1.0.6)
+      google-protobuf (~> 3.14)
+    grpc (1.36.0-x86_64-linux)
+      google-protobuf (~> 3.14)
+      googleapis-common-protos-types (~> 1.0)
+    grpc-tools (1.36.0)
+    nio4r (2.5.7)
+    puma (5.2.2)
+      nio4r (~> 2.0)
+    rack (2.2.3)
+    roda (3.42.0)
+      rack
+    rodauth (2.10.0)
+      roda (>= 2.6.0)
+      sequel (>= 4)
+    rspec (3.10.0)
+      rspec-core (~> 3.10.0)
+      rspec-expectations (~> 3.10.0)
+      rspec-mocks (~> 3.10.0)
+    rspec-core (3.10.1)
+      rspec-support (~> 3.10.0)
+    rspec-expectations (3.10.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.10.0)
+    rspec-mocks (3.10.2)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.10.0)
+    rspec-support (3.10.2)
+    sequel (5.42.0)
+
+PLATFORMS
+  x86_64-linux
+
+DEPENDENCIES
+  google-protobuf
+  grpc
+  grpc-tools
+  puma
+  rack
+  roda
+  rodauth
+  rspec
+
+BUNDLED WITH
+   2.2.3

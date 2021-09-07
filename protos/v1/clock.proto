@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package resources.v1;
+
+message Clock {
+  int32 timestamp = 1;
+}
