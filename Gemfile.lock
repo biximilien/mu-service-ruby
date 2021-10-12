@@ -10,7 +10,7 @@ GEM
       googleapis-common-protos-types (~> 1.0)
     grpc-tools (1.38.0)
     nio4r (2.5.8)
-    puma (5.4.0)
+    puma (5.5.1)
       nio4r (~> 2.0)
     rack (2.2.3)
     roda (3.47.0)
