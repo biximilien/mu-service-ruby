@@ -1,3 +1,4 @@
+# TODO: rename to service?
 class BaseHandler
 
   attr_reader :request, :response

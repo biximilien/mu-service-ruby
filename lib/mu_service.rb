@@ -6,79 +6,39 @@ class MuService < Roda
 
   # logging
   if ENV['RACK_ENV'] == "production"
-    plugin :common_logger, ::Logger.new('log/production.log'),  method: :error
+    LOGGER = ::Logger.new('log/production.log').freeze
+    LOG_LEVEL = :error.freeze
   elsif ENV['RACK_ENV'] == "test"
-    plugin :common_logger, ::Logger.new('log/test.log'),        method: :debug
+    LOGGER = ::Logger.new('log/test.log').freeze
+    LOG_LEVEL = :debug.freeze
   else
-    plugin :common_logger, ::Logger.new('log/development.log'), method: :debug
+    LOGGER = ::Logger.new('log/development.log').freeze
+    LOG_LEVEL = :debug.freeze
   end
+  plugin :common_logger, LOGGER, method: LOG_LEVEL
 
   # error handling
   plugin :error_handler do |e|
-    # logger.log(e)
+    LOGGER.error(e.message)
     response['Content-Type'] = 'application/json'
     response.status = 500
     Oj.dump({"message" => "server error"})
   end
 
+  plugin :not_found do
+    response['Content-Type'] = 'application/json'
+    response.status = 404
+    Oj.dump({"message" => "not found"})
+  end
+
   # routing (Roda)
+  plugin :hash_routes
+
+  Dir.glob('./routes/**/*.rb').each do |route|
+    require File.expand_path(route)
+  end
+
   route do |r|
-    r.on "api" do
-      r.on "v1" do
-        # Protobuf gRPC over JSON demo
-        # healthcheck for your convenience
-        r.get "healthcheck" do
-          handler = HealthcheckHandler.new(request, response)
-          handler.handle
-        end
-
-        # example timestamp service
-        r.get "clock" do
-          handler = ClockHandler.new(request, response)
-          handler.handle
-        end
-
-        # example crash
-        r.get "crash" do
-          raise "this will cause an intended crash!"
-        end
-
-        # example rpc endpoint
-        r.is "search" do
-          r.get do
-            handler = SearchHandler.new(request, response)
-            handler.handle
-          end
-
-          r.post do
-            handler = SearchHandler.new(request, response)
-            handler.handle
-          end
-        end
-
-        # example CRUD REST API endpoint
-        r.is "users" do
-          # read
-          r.get do
-
-          end
-
-          # update
-          r.put do
-
-          end
-
-          # create
-          r.post do
-
-          end
-
-          # destroy
-          r.delete do
-
-          end
-        end
-      end
-    end
+    r.hash_routes
   end
 end
