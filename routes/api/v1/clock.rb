@@ -3,8 +3,8 @@ class MuService
     # Protobuf gRPC over JSON demo
     # healthcheck for your convenience
     r.get "clock" do
-      handler = ClockHandler.new(request, response)
-      handler.handle
+      handler = ClockService.new(request, response)
+      handler.call
     end
   end
 end

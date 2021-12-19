@@ -3,8 +3,8 @@ class MuService
     # Protobuf gRPC over JSON demo
     # healthcheck for your convenience
     r.get "healthcheck" do
-      handler = HealthcheckHandler.new(request, response)
-      handler.handle
+      service = HealthcheckService.new(request, response)
+      service.call
     end
   end
 end

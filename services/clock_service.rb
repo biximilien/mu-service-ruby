@@ -1,4 +1,4 @@
-class ClockHandler < BaseHandler
+class ClockService < BaseService
 
   def resource
     ::Resources::V1::Clock

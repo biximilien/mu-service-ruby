@@ -2,13 +2,13 @@ class MuService
   hash_routes("/api/v1").on "search" do |r|
     # example rpc endpoint
     r.get do
-      handler = SearchHandler.new(request, response)
-      handler.handle
+      service = SearchService.new(request, response)
+      service.call
     end
 
     r.post do
-      handler = SearchHandler.new(request, response)
-      handler.handle
+      service = SearchService.new(request, response)
+      service.call
     end
   end
 end

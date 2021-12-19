@@ -1,4 +1,4 @@
-class SearchHandler < BaseHandler
+class SearchService < BaseService
 
   def resource
     Resources::V1::SearchResponse

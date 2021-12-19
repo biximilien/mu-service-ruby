@@ -1,4 +1,4 @@
-class HealthcheckHandler < BaseHandler
+class HealthcheckService < BaseService
 
   def resource
     ::Resources::V1::Healthcheck

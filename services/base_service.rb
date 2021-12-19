@@ -1,5 +1,4 @@
-# TODO: rename to service?
-class BaseHandler
+class BaseService
 
   attr_reader :request, :response
 
@@ -8,11 +7,12 @@ class BaseHandler
     @response = response
   end
 
+  # find a better name, probably...
   def logic
     nil
   end
 
-  def handle()
+  def call()
     set_content_type_header
     logic
     encode_response
