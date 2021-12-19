@@ -7,4 +7,9 @@ end
 # dependencies
 require_relative "lib/mu_service"
 
-run MuService.freeze.app
+# freeze to prevent unexpected modification except in development
+unless ENV['RACK_ENV'] == "development"
+  MuService.freeze
+end
+
+run MuService.app

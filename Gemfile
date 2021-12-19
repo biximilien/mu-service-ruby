@@ -18,6 +18,9 @@ gem 'grpc-tools', group: 'development'
 # testing because we ❤️ rspec
 gem 'rspec', group: 'test'
 
+# perfomance JSON parser and object marshaller
+gem 'oj'
+
 # pick your preferred backend (optinal)
 # gem 'sequel'
 # gem 'activerecord'

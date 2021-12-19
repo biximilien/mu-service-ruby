@@ -2,9 +2,11 @@
 FROM ruby:3.0
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
 WORKDIR /mu-service-ruby
+
 COPY Gemfile /mu-service-ruby/Gemfile
 COPY Gemfile.lock /mu-service-ruby/Gemfile.lock
-RUN bundle install
+RUN gem install bundler && bundle install --jobs=3 --retry=3
+
 COPY config.ru /mu-service-ruby/config.ru
 COPY Procfile /mu-service-ruby/Procfile
 COPY Rakefile /mu-service-ruby/Rakefile
