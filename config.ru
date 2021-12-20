@@ -4,6 +4,9 @@ $:.unshift File.expand_path('./resources/')
   Dir.glob(File.join(['.', dir].join('/'), '**', '*.rb'), &method(:require))
 end
 
+# environment
+require_relative "config/environment"
+
 # dependencies
 require_relative "lib/mu_service"
 

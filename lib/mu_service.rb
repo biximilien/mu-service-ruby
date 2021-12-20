@@ -1,21 +1,7 @@
-require 'roda'
-require 'oj'
-require 'logger'
-
 class MuService < Roda
 
   # logging
-  if ENV['RACK_ENV'] == "production"
-    LOGGER = ::Logger.new('log/production.log').freeze
-    LOG_LEVEL = :error.freeze
-  elsif ENV['RACK_ENV'] == "test"
-    LOGGER = ::Logger.new('log/test.log').freeze
-    LOG_LEVEL = :debug.freeze
-  else
-    LOGGER = ::Logger.new('log/development.log').freeze
-    LOG_LEVEL = :debug.freeze
-  end
-  plugin :common_logger, LOGGER, method: LOG_LEVEL
+  plugin :common_logger, LOGGER
 
   # error handling
   plugin :error_handler do |e|

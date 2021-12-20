@@ -10,7 +10,7 @@ It is carefully crafted from lightweight and robust components.
 ## Features
 
 * Minimalist architecture
-* Supports REST, gRPC and
+* Supports REST and gRPC
 * Protocol Buffers (protobuf)
 * Docker
-* Healthcheck - for your convenience
+* Healthcheck method for your convenience
